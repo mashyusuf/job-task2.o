@@ -24,7 +24,7 @@ export default function MenuBar() {
       <IoBookOutline  className="text-3xl text-gray-500 hover:text-green-200" />
      </div>
       <div className="p-2 bg-green-500 rounded-lg text-white">
-        <FaHandHoldingHeart className='text-5xl' />
+        <FaHandHoldingHeart className='text-4xl' />
       </div>
     </div>
 
