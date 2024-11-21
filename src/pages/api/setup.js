@@ -1,22 +1,41 @@
 import { openDB } from "../../database/lib/db";
 
 
-export default async function handler(req, res) {
+export default async function setup() {
   const db = await openDB();
 
-  // টেবিল তৈরি করার জন্য SQL কমান্ড
+  // Categories টেবিল তৈরি
   await db.exec(`
-    CREATE TABLE IF NOT EXISTS duas (
+    CREATE TABLE IF NOT EXISTS categories (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
-      name TEXT NOT NULL,
-      url TEXT NOT NULL,
-      title TEXT NOT NULL,
-      arabic TEXT NOT NULL,
-      transliteration TEXT,
-      translation TEXT,
-      reference TEXT
+      name TEXT NOT NULL
     );
   `);
 
-  res.status(200).json({ message: "Duas table created successfully!" });
+  // Subcategories টেবিল তৈরি
+  await db.exec(`
+    CREATE TABLE IF NOT EXISTS subcategories (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      name TEXT NOT NULL,
+      category_id INTEGER,
+      FOREIGN KEY(category_id) REFERENCES categories(id)
+    );
+  `);
+
+  // Duas টেবিল তৈরি
+  await db.exec(`
+    CREATE TABLE IF NOT EXISTS duas (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      subcategory_id INTEGER,
+      title TEXT NOT NULL,
+      arabic TEXT NOT NULL,
+      transliteration TEXT,
+      translation TEXT NOT NULL,
+      reference TEXT,
+      FOREIGN KEY(subcategory_id) REFERENCES subcategories(id)
+    );
+  `);
+
+  console.log("Tables created successfully!");
 }
+setup();

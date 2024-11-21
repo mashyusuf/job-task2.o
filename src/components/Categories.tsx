@@ -1,6 +1,6 @@
 import React from "react";
 import { IoSearchOutline } from "react-icons/io5";
-import Dua from "./Dua";
+
 
 export default function Categories() {
   return (
@@ -20,7 +20,7 @@ export default function Categories() {
           />
         </label>
       </div>
-      <Dua />
+      
     </div>
   );
 }

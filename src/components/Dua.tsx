@@ -2,6 +2,8 @@ import React from 'react'
 import boyImg from '../app/assets/boyImg.png'
 import Image from 'next/image'
 import Link from 'next/link'
+import Duas from './Banner'
+
 export default function Dua() {
   return (
     <div>
@@ -18,6 +20,7 @@ export default function Dua() {
       </div>
       </div>
        </Link>
+       <Duas />
     </div>
   )
 }
